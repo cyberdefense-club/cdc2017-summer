@@ -1,0 +1,4 @@
+# git does not allow empty directories.
+# Yet, we need to add this empty directory on git.
+# To achieve that, we created this .git.include.empty.dir file, so that the directory will not be empty thus enabling us to commit it.
+# Once there are other files committed to GitHub inside this folder, you can commit this file.
