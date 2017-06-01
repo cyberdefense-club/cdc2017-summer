@@ -1,22 +1,42 @@
-This week's homework is to write a game that is similar to an old board game called MasterMind. We will call this game MeisterGeist.
+This week's homework is to write a game that is similar to an old 
+board game called MasterMind. We will call this game MeisterGeist.
 
-When the game starts, the computer should generate a secret 4-digit number. Any 4-digit number is OK, even numbers that begin with one or more zeroes. After generating the secret number, the program should prompt the user to try to guess it. 
+When the game starts, the computer should generate a secret 4-digit 
+number. Any 4-digit number is OK, even numbers that begin with one or 
+more zeroes. After generating the secret number, the program should 
+prompt the user to try to guess it. 
 
-After the user guesses, the computer should respond with feedback per the following guidelines:
+After the user guesses, the computer should respond with feedback per 
+the following guidelines:
 
-- ALPHA. This means that one of the digits in the guessed number appears in the secret number, but is in the wrong position. 
-- BRAVO. This means that one of the digits in the guessed number appears in the secret number in the correct position.
-- ZULU. This means that the guess has none of the digits in the guess appear anywhere in the secret number.
+- ALPHA. This means that one of the digits in the guessed number 
+  appears in the secret number, but is in the wrong position. 
 
-ALPHA and BRAVO can appear in combinations. For example, "ALPHA ALPHA" would mean that two of the guessed digits are in the secret number, but neither are in the correct position. "ALPHA BRAVO BRAVO" means that three of the digits in the guessed number are in the secret number, but only one of those is in the correct position.
+- BRAVO. This means that one of the digits in the guessed number 
+  appears in the secret number in the correct position.
 
-The computer's feedback must always have all ALPHA strings at the beginning and all BRAVO strings at the end. ZULU cannot appear with either ALPHA or BRAVO, so it is always by itself.
+- ZULU. This means that the guess has none of the digits in the guess 
+  appear anywhere in the secret number.
+
+ALPHA and BRAVO can appear in combinations. For example, "ALPHA ALPHA" 
+would mean that two of the guessed digits are in the secret number, 
+but neither are in the correct position. "ALPHA BRAVO BRAVO" means 
+that three of the digits in the guessed number are in the secret 
+number, but only one of those is in the correct position.
+
+The computer's feedback must always have all ALPHA strings at the 
+beginning and all BRAVO strings at the end. ZULU cannot appear with 
+either ALPHA or BRAVO, so it is always by itself.
 
 Finally, if the user guesses the number in 12 tries they win.
 
-Here is an example. Suppose that the computer generates the number 1174. The following sample session shows one way the player could guess and the responses the computer would give (the user types in the guesses, and the rest is printed by the program):
+Here is an example. Suppose that the computer generates the number 
+1174. The following sample session shows one way the player could 
+guess and the responses the computer would give (the user types in the 
+guesses, and the rest is printed by the program):
 
-    Welcome to MeisterGeist! Please wait while I generate a secret 4-digit number...
+    Welcome to MeisterGeist! 
+    Please wait while I generate a secret 4-digit number...
     Ready!
     
     What is your 1st guess? 1234
@@ -50,4 +70,8 @@ Bonus cred if you can:
 - Get the output to look exactly like the above output. 
 - Prompt the user for the number of guesses they should get.
 
-For a bigger challenge, come up with an idea (you don't have to implement this) about how you automatically test the session above. How would you force the program to use 1174 as the secret, and how would you emulate a user doing the guesses in the above session? How would you check that the output is correct?
+For a bigger challenge, come up with an idea (you don't have to 
+implement this) about how you automatically test the session above. 
+How would you force the program to use 1174 as the secret, and how 
+would you emulate a user doing the guesses in the above session? How 
+would you check that the output is correct?
