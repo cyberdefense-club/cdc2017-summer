@@ -1,0 +1,87 @@
+import random
+import sys
+print("Welcome to MeisterGeist")
+print("Please wait while I generate a secret 4-digit number...")
+rnumbers=[]#For specific numbers, modify this and comment out the next two lines.
+for i in range(4):
+    rnumbers.append(random.randint(0,9))
+print("Ready!")
+max_guesses=int(input("How many guesses do you want? "))
+#print(rnumbers) #Uncomment for testing.
+guesscounter = 0
+guess=0
+def check(numbers,guess):
+    guesslist=list(str(guess))
+    alpha = 0
+    bravo = 0
+    zulu = 0
+    counter=0
+    one=False
+    two=False
+    three=False
+    four=False
+    if guess == "":
+        return
+    for n in guesslist:
+        if int(n) in numbers:
+            break
+        elif int(n) not in numbers:
+            zulu += 1
+    while counter <4:
+        if int(guesslist[counter]) == numbers[counter]:
+            bravo += 1
+            if counter == 0:
+                one=True
+            elif counter==1:
+                two=True
+            elif counter==2:
+                three=True
+            elif counter==3:
+                four=True
+            counter+=1
+            continue
+        if counter == 0 and one ==False or counter==1 and two== False or counter==2 and three==False or counter==3 and four==False:
+            if int(guesslist[counter]) != numbers[counter] and int(guesslist[counter]) in numbers:
+                alpha +=1
+                counter += 1
+                continue
+            else:
+                counter +=1
+    if zulu ==4:
+        print("Zulu")
+        print("")
+    if alpha > 0:
+        for t in range(alpha):
+            print("Alpha", end=" ")
+        if bravo == 0:
+            print("")
+            print("")
+    if bravo > 0:
+        for t in range(bravo):
+            print("Bravo", end=" ")
+        print("")
+        print("")
+    if bravo == 4:
+        print("Congratulations! You win!!!")
+        sys.exit(0)
+
+while guesscounter <= max_guesses-1:
+    if guesscounter ==0:
+        guess=input("What is your 1st guess? ")
+        check(rnumbers,guess)
+        guesscounter+=1
+    elif guesscounter == 1:
+        guess=input("What is your 2nd guess? ")
+        check(rnumbers, guess)
+        guesscounter += 1
+    elif guesscounter == 2:
+        guess=input("What is your 3rd guess? ")
+        check(rnumbers, guess)
+        guesscounter += 1
+    else:
+        guess=input("What is your {0}".format(str(guesscounter+1)) + "th guess? ")
+        check(rnumbers, guess)
+        guesscounter+= 1
+if guesscounter == max_guesses:
+    print("Too bad, you lost. Better luck next time!")
+    sys.exit(0)
