@@ -1,15 +1,15 @@
 import datetime
 
 
-def sqrt(f: float, tolerance: float = 0.00001):
-    lo, hi = 0, max(1, f)
+def sqrt(target, tolerance = 0.00001):
+    lo, hi = 0, max(1, target)
 
     while True:
         mid = lo + (hi - lo)/2
         sq = mid * mid
-        if abs(sq-f) < tolerance:
+        if abs(sq-target) < tolerance:
             return mid
-        elif sq > f:
+        elif sq > target:
             if hi == mid:
                 # we are looping, and can't get the precision we want:
                 return hi
