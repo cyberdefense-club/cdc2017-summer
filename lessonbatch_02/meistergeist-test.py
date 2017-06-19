@@ -1,5 +1,5 @@
 import unittest
-import meistergeist
+import lessonbatch_02.meistergeist as meistergeist
 
 # class ClockTest(unittest.TestCase):
 #     # Test creating a new clock with an initial time.
@@ -19,9 +19,15 @@ class MeistergeistTest(unittest.TestCase):
                  '9433', '2831', '8754', '3289']),
             meistergeist.WIN)
 
-    def test_fail_on_wrong_length(self):
+    def test_fail_on_long_guess(self):
         self.assertEqual(
             meistergeist.main(1, '5', 1, ['5542']),
+            meistergeist.LOSS
+        )
+
+    def test_fail_on_short_guess(self):
+        self.assertEqual(
+            meistergeist.main(4, '5542', 1, ['5']),
             meistergeist.LOSS
         )
 
