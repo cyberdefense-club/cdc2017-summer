@@ -25,6 +25,8 @@ LOSS = 1
 def generate_secret(length):
     global secret
 
+    secret = ""
+
     for i in range(length):
         secret += str(random.randint(0, 9))
 
