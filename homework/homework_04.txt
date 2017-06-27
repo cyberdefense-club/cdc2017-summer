@@ -1,0 +1,4 @@
+Exercism.io is the site I told you about that gives you bite-sized Python exercises (as well as other languages).
+If you are satisfied with your work on all of the other homework so far, if you are frustrated and want to do some
+simpler exercises for a while, or if you just want some problems to solve to help you get better at problem-solving
+in Python, set up exercism to work on your computer and see if you can finish give if them.
