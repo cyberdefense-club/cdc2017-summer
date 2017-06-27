@@ -10,23 +10,37 @@ tries = 0
 
 def testguess(guess, key):
     s = ""
-    iterator = 1
+    bCount = 0
+    aCount = 0
+    aKey = ''
+    aGuess = ''
     match = False
 
-    while iterator < len(key):
-
-        if guess[iterator] == key[iterator]:
-            s += "Bravo"
-            match = True
-        elif parsechar(key, guess[iterator]):
-            s += "Alpha"
+    for n in range(0, len(key)):
+        if guess[n] == key[n]:
+            bCount += 1
             match = True
         else:
-            s += "-"
-        iterator += 1
+            aKey += key[n]
+            aGuess += guess[n]
+
+    for m in range(0, len(aKey)):
+        if parsechar(aKey, aGuess[m]):
+            aCount += 1
+            aKey.pop(m)
+            m -= 1
+            match = True
 
     if match == False:
         s = "Zulu"
+    else:
+        j = 0
+        while j < bCount:
+            s += "Bravo"
+        k = 0
+        while k < aCount:
+            s += "Alpha"
+
     return s
 
 
