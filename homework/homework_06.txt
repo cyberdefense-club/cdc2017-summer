@@ -1,0 +1,134 @@
+Q1. When computer programs prompt you to enter sensitive information, such as a
+password or a PIN number, they usually do not display what you type on the screen.
+Write a program that asks the user for a 5-digit number but do not display what
+they type. However, store whatever they type so that you can reference it later
+in the program. Here is a sample run:
+
+    Please enter a 5-digit number:
+    You entered: 12345
+
+Some hints for this one: you can either search online about how to intercept raw
+keyboard input and keep it from echoing to the screen, or you can search online
+to see if there is a package that will do this for you. Hint: the second approach
+is easier.
+
+
+Q2. Have a variable that stores a 5-digit PIN that you just hard-code into the
+script for now. For example, you might have a line of code that says this:
+
+    PIN = 12345
+
+Prompt the user to enter their pin. If they don't get it right in three tries,
+lock the program for 10 seconds. Here is one sample run:
+
+    Please enter your 5-digit PIN:
+    You have entered the correct PIN. Thank you.
+
+Here is another:
+
+    Please enter your 5-digit PIN:
+    You have not entered the correct PIN. Please try again.
+    Failure number 1. The screen will lock at 3 failures.
+
+    Please enter your 5-digit PIN:
+    You have not entered the correct PIN. Please try again.
+    Failure number 2. The screen will lock at 3 failures.
+
+    Please enter your 5-digit PIN:
+    You have entered the correct PIN. Thank you.
+
+And here is one more:
+
+    Please enter your 5-digit PIN:
+    You have not entered the correct PIN. Please try again.
+    Failure number 1. The screen will lock at 3 failures.
+
+    Please enter your 5-digit PIN:
+    You have not entered the correct PIN. Please try again.
+    Failure number 2. The screen will lock at 3 failures.
+
+    Please enter your 5-digit PIN:
+    You have entered the correct PIN. Thank you.
+    Failure number 3. The screen will now lock for 10 seconds.
+
+    <10-second wait>
+
+    Please enter your 5-digit PIN:
+    You have not entered the correct PIN. Please try again.
+    Failure number 1. The screen will lock at 3 failures.
+
+    Please enter your 5-digit PIN:
+    You have entered the correct PIN. Thank you.
+
+
+Q3. Modify the Q2 program so that each time the program locks, the duration of
+the lock period increases by 2x. So the screen should lock for 10 seconds after
+three incorrect guesses, and then lock for 20 seconds after six incorrect guesses,
+and then lock for 40 seconds after nine incorrect guesses, and so on.
+
+
+Q4. After our user logs in by entering the correct PIN, they want to talk to our
+program. Unfortunately, our program is a very lame chatbot. Whatever you say to
+our program, it more or less just echoes back to you. Here is a partial session,
+starting from the time the user enters the correct PIN:
+
+    <previous interaction with the program not shown here>
+    You have entered the correct PIN. Thank you.
+
+    Hello, and welcome. Talk to me!
+    Hi, my name is Chris and I like pizza and long walks on the beach.
+
+    You said, "Hi, my name is Chris and I like pizza and long walks at the beach."
+    Talk to me!
+    Seriously? This is what I get for entering the correct PIN?
+
+    You said, "Seriously, This is what I get for entering the correct PIN?"
+    <and so on ... you get the idea>
+
+
+Q5. Extra credit. When the user supplies the correct PIN, but before letting them
+them start to chat with our amazing(?) chatbot program, take note of the current
+time. To learn how to do this, you should search for how to get the current time
+in Python, and look for answers that use the datetime package.
+
+Then, whenever the user types a message, but before our chatbot responds, have the
+program see if more than ten minutes have elapsed since the user supplied the PIN.
+If so, make them supply it again before replying to them. You might want to test
+this with a shorter timeout, so that you don't have to wait ten minutes. :-)
+
+Here is a sample of what one of these "session timeouts" might look like:
+
+    You said, "Hi, my name is Chris and I like pizza and long walks at the beach."
+    Talk to me!
+    Seriously? This is what I get for entering the correct PIN?
+
+    I'm sorry, but your session has timed out.
+    Please enter your 5-digit PIN:
+    You have entered the correct PIN. Thank you.
+
+    You said, "Seriously? This is what I get for entering the correct PIN?"
+
+Of course, if the user does not supply the correct PIN on the first attempt, they
+will be subject to a 10-second timeout after three failures, and a 20-second
+timeout after six failures, and so on, just like before. Set the timeout back to
+10 seconds when their session times out, however (so they don't miss it three
+times and have to wait a very long time).
+
+
+Q5b. Double-extra credit. Can you figure out how to time out the user's session
+without waiting for them to type anything to our chatbot? This might look like
+the following:
+
+    You said, "Hi, my name is Chris and I like pizza and long walks at the beach."
+    Talk to me!
+
+    I'm sorry, but your session has timed out.
+    Please enter your 5-digit PIN:
+    You have entered the correct PIN. Thank you.
+
+    Talk to me!
+    Seriously? This is what I get for entering the correct PIN?
+    You said, "Seriously? This is what I get for entering the correct PIN?"
+
+Notice that the program takes over the flow of control and suspends the app
+without waiting for the user to type anything. How can we do that?

@@ -5,7 +5,7 @@ is calculated by taking a person's weight in kilograms and dividing by the squar
 of their height in meters. For example:
 
     Enter your height in meters: 1.778
-    Enter your weight in kilograms: 99
+    Enter your weight in kilograms: 100
 
     Your BMI is: 31.6
 
