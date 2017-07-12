@@ -1,0 +1,95 @@
+Q1. BMI (Body Mass Index) is a number my doctor tells me once in a while that
+reminds me that I have eaten too much fried chicken (in their opinion). Seriously,
+you probably know that it is one way to measure thinness or obesity in people. It
+is calculated by taking a person's weight in kilograms and dividing by the square
+of their height in meters. For example:
+
+    Enter your height in meters: 1.778
+    Enter your weight in kilograms: 100
+
+    Your BMI is: 31.6
+
+Yes, those are really my current numbers - my weight is at an all-time high! Track
+athletes call that a PR. Moving on...
+
+Write a program, just like the one above, that prompts the user for their height
+in meters and their weight in kilograms. Calculate and display their BMI.
+
+
+Q2. Write a similar program that does exactly the same thing, but by asking
+the user for feet and pounds. So if someone is 5 foot 10 inches tall, they will
+enter something like 5.83 feet for their height. Here's the (small) catch: the
+formula doesn't work in feet and pounds, only in meters and kilograms. So, before
+doing the calculation of (weight)/(height^2), convert the weight to kilograms,
+and the height to meters. For the sake of learning programming, there is another
+approach I do *not* want you to take, and that is to calculate this:
+
+    BMI = 703 * (Height in inches) / ((Weight in pounds)^2)
+
+Instead, I am explicitly asking you to look up the conversion rates for feet to
+meters and pounds to kilograms and do the conversions in your program. At that
+point, you can use the same formula to calculate BMI that you used in Q1. Here is
+a sample run:
+
+    Enter your height in feet: 5.83
+    Enter your weight in pounds: 220
+
+    Your BMI is: 31.6
+
+
+Q3. Write a third program, but this time let the user enter their height in feet
+and inches, and let them enter their weight in pounds and ounces. To calculate
+BMI, first convert the feet and inches to feet to meters, and convert pounds and
+ounces to kilograms. At that point, you can use the same formula to calculate BMI
+that you used in Q1 and Q2. Here is a sample run:
+
+    Enter your height (feet only): 5
+    Enter your height (inches only): 10
+
+    Enter your weight (pounds only): 219
+    Enter your weight (ounces only): 9
+
+    Your BMI is: 31.5
+
+
+Q4. BMI is usually categorized as follows:
+
+    Below 18.5 == underweight
+    18.5 to 24.9 == normal
+    25.0 to 29.9 == overweight
+    30.0 and above == obese
+
+I'm not trying to call out anybody's BMI ... except maybe my own. I need to drop
+poundage, as you can see I'm solidly in the obese category.
+
+For this question, I want you to first ask the user whether they want to give
+their data in metric units, in feet and pounds only, or in feet and inches For
+height and pounds and ounces for weight. Then take them through one of the three
+scenarios from Q1, Q2, or Q3, depending on which they choose. Finally, display
+the categories listed above and tell them the category into which the calculated
+BMI falls. Here is a sample run:
+
+Welcome to the BMI Calculator!
+How would you like to enter your height and weight?
+
+    1) using meters and kilograms
+    2) using feet only (decimals allowed) and pounds
+    3) using feet and inches for height and pounds and ounces for weight
+
+    Please enter 1, 2, or 3: <wait for user input ... they choose 1!>
+
+    Enter your height in meters: 1.778
+    Enter your weight in kilograms: 99
+
+    Your BMI is: 31.6
+
+    BMI is usually categorized as follows:
+
+        Below 18.5 == underweight
+        18.5 to 24.9 == normal
+        25.0 to 29.9 == overweight
+        30.0 and above == obese
+
+    As you can see, the BMI we calculated falls into the "obese" category.
+
+    Thank you for using the BMI calculator!

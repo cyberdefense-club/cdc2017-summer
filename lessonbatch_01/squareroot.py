@@ -1,15 +1,19 @@
 import datetime
 
 
-def sqrt(f: float, tolerance: float = 0.00001):
-    lo, hi = 0, max(1, f)
+def sqrt2(n:int):
+    return n**0.5
+
+
+def sqrt(target, tolerance = 0.00001):
+    lo, hi = 0, max(1, target)
 
     while True:
         mid = lo + (hi - lo)/2
         sq = mid * mid
-        if abs(sq-f) < tolerance:
+        if abs(sq-target) < tolerance:
             return mid
-        elif sq > f:
+        elif sq > target:
             if hi == mid:
                 # we are looping, and can't get the precision we want:
                 return hi
@@ -29,6 +33,14 @@ if __name__ == '__main__':
     p = float(input("What precision do you want (must be between 0 and 1)? "))
     t1 = datetime.datetime.now()
     s = sqrt(f, p)
+    print(s)
+    t2 = datetime.datetime.now()
+
+    print("The square root of {0} is {1} and took {2} to calculate"
+          .format(f, s, t2-t1))
+
+    t1 = datetime.datetime.now()
+    s = sqrt2(f)
     print(s)
     t2 = datetime.datetime.now()
 
