@@ -1,9 +1,13 @@
 def bmi_metric(h,m):
     return m/(h**2)
+
+
 def bmi_imperialdec(h,m):
-    metrich = h * .3048
-    metricm = m * .4536
-    return metricm/(metrich**2)
+    metricH = h * .3048
+    metricM = m * .4536
+    return metricM/(metricH**2)
+
+
 def bmi_imperial(H,h,M,m):
     mass = M*16
     mass+=m
@@ -12,6 +16,8 @@ def bmi_imperial(H,h,M,m):
     height += h
     height*=.0254
     return mass/(height**2)
+
+
 def evaluate(bmi):
     if bmi < 18.5:
         category = "underweight"
@@ -21,6 +27,7 @@ def evaluate(bmi):
         category = "overweight"
     elif bmi > 30:
         category = "obese"
+
     print("")
     print("BMI is usually categorized as follows:")
     print("")
@@ -30,6 +37,8 @@ def evaluate(bmi):
     print("30.0 and above = obese")
     print("")
     print('As you can see, the BMI calculated falls into the "{0}"'.format(category) + " category.")
+
+
 def ninput(n):
     if int(n) == 1:
         bmi = bmi_metric(float(input("Enter your height in meters: ")),float(input("Enter your mass in kilograms: ")))
@@ -52,5 +61,6 @@ print("    1) using meters and kilograms")
 print("    2) using feet only (decimals allowed) and pounds")
 print("    3) using feet and inches for height and pounds and ounces for weight")
 ninput(input("Please input 1,2, or 3: "))
+
 
 
