@@ -1,0 +1,100 @@
+print("Hello, and welcome to BMI Calc, the friendly body mass index calculator!")
+def MetricBMICalculator():
+    height = input("Enter your height in meters. Do it NOW!: ")
+    weight = input("Enter your weight in kilograms. Do it NOW!: ")
+
+    height = float(height)
+    weight = float(weight)
+
+    heightSquared = height * height
+
+    bmi = weight / heightSquared
+
+    return(bmi)
+
+def ImperialBMICalculator():
+    heightImperial = input("Enter your height in feet. Do it NOW!: ")
+    weightImperial = input("Enter your weight in pounds. Do it NOW!: ")
+
+    heightImperial = float(heightImperial)
+    weightImperial = float(weightImperial)
+
+    heightMetric = heightImperial * .3048
+    weightMetric = weightImperial * .453592
+
+    heightSquared = heightMetric * heightMetric
+
+    bmi = weightMetric / heightSquared
+
+    return(bmi)
+
+def ImperialOunAndInBMICalculator():
+    heightFeet = input("Enter your height (feet only). Do it NOW!: ")
+    heightInches = input("Enter your height (inches only). Do it NOW!: ")
+    weightPounds = input("Enter your weight (pounds only). Do it NOW!: ")
+    weightOunces = input("Enter your weight (ounces only). Do it NOW!: ")
+
+    heightFeet = float(heightFeet)
+    heightInches = float(heightInches)
+    weightPounds = float(weightPounds)
+    weightOunces = float(weightOunces)
+
+    heightInches = heightInches / 12
+    weightOunces = weightOunces / 16
+
+    heightImperial = heightInches + heightFeet
+    weightImperial = weightOunces + weightPounds
+
+    heightMetric = heightImperial * .3048
+    weightMetric = weightImperial * .453592
+
+    heightSquared = heightMetric * heightMetric
+
+    bmi = weightMetric / heightSquared
+
+    return(bmi)
+
+print("How would you like to enter your height and weight?")
+print("")
+print("  (1) With meters and kilograms")
+print("  (2) With feet and pounds")
+print("  (3) With feet, inches, pounds, and ounces")
+print("")
+choice = input("Please choose either option 1, 2, or 3: ")
+
+if(int(choice) == 1):
+    trueBMI = MetricBMICalculator()
+elif(int(choice) == 2):
+    trueBMI = ImperialBMICalculator()
+else:
+    trueBMI = ImperialOunAndInBMICalculator()
+
+if float(trueBMI) < 18.5:
+    BMICategory = "underweight"
+elif float(trueBMI) >= 18.5 and float(trueBMI) < 25.0:
+    BMICategory = "normal"
+elif float(trueBMI) >= 25.0 and float(trueBMI) < 30:
+    BMICategory = "overweight"
+else:
+    BMICategory = "obese"
+
+print("")
+print("Your BMI is %s" % trueBMI)
+print("")
+print("BMI is usually categorized as follows:")
+print("  Below 18.5 = underweight")
+print("  18.5 to 24.9 = normal")
+print("  25 to 29.9 = overweight")
+print("  30 or more = obese")
+print("")
+if BMICategory == "underweight":
+    Message = "So go eat a couple of chalupas or someting!"
+elif BMICategory == "normal":
+    Message = "So stop being so normal and either gain or lose weight, or get lost!"
+elif BMICategory == "overweight":
+    Message = "What, do you think that I have something else to say? Because I dont!"
+else:
+    Message = "Better luck next time!"
+
+print("As you can see, you fall under the category of %s." % BMICategory)
+print(Message)
