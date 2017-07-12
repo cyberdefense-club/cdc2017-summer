@@ -59,8 +59,8 @@ def main():
                 else:
                     heightInStr = heightInStr + charFt
             try:
-                heightFt = int(heightFtStr)
-                heightIn = int(heightInStr)
+                heightFt = float(heightFtStr)
+                heightIn = float(heightInStr)
                 isHeightMetric = False
                 isNotFinished = False
                 height = calculate_feet_from_multi(heightFt, heightIn)
@@ -95,8 +95,8 @@ def main():
                 else:
                     weightOzStr = weightOzStr + charLb
             try:
-                heightLb = int(weightLbStr)
-                heightOz = int(weightOzStr)
+                heightLb = float(weightLbStr)
+                heightOz = float(weightOzStr)
                 isWeightMetric = False
                 isNotFinished = False
                 weight = calculate_pounds_from_multi(heightLb, heightOz)
