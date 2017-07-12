@@ -1,0 +1,26 @@
+For this week's meeting, I want you to do some of the exercises that are 
+available at http://learnpython.org. You are welcome to do any of the exercises, 
+and ask me questions about any of them, but I want you to specifically 
+do the following. It might be a lot for some of you to do in 2 days, but 
+see how far you can get.
+
+- Lists
+- String Formatting
+- Basic String Operations
+- Loops
+- Conditions 
+- Functions
+
+Each of these sections has its own set of examples you can play with and 
+an exercise at the end. 
+
+NOTE:
+=====
+Be advised that some of the example "code" can't actually be run. For example, 
+in the Conditions section, the "code" after the words "here is an example for 
+using Python's 'if' statement using code blocks" is just pseudo-code. They 
+shouldn't have put it in the code editor, because you can't run it. Don't 
+let that trick you into thinking you're doing something wrong! :-)
+
+See you Tuesday,
+Chris

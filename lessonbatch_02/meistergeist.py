@@ -11,7 +11,7 @@ ZULU = "ZULU"
 SPACE = " "
 BACKSPACE = "\b"
 MINDIGITS = 1
-MAXDIGITS = 20
+MAXDIGITS = 8
 MINGUESSES = 5
 MAXGUESSES = 20
 CORRECT = "CORRECT"
@@ -24,6 +24,8 @@ LOSS = 1
 
 def generate_secret(length):
     global secret
+
+    secret = ""
 
     for i in range(length):
         secret += str(random.randint(0, 9))
