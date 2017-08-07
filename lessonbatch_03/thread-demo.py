@@ -2,8 +2,7 @@ import threading
 import queue
 import urllib.request
 from datetime import datetime
-from html import escape
-# from cgi import escape
+# from html import escape
 
 
 def get_url(q:queue.Queue, url:str):

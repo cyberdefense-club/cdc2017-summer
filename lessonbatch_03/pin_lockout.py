@@ -1,87 +1,98 @@
-import getpass
+from getpass import getpass
 import time
+import multiprocessing
+import sys
 
 
-def flash_string(flashstring="...", flashreps=5, flashsleep=0.5):
-    BACKSPACE = "\b"
-    SPACE = " "
-
-    """make it look like we are doing work by flashing text"""
-
-    fslength = len(flashstring)
-
-    for i in range(flashreps):
-        print("{0}{1}".format(
-            # don't bother on the first loop:
-            SPACE * (fslength if i else 0),
-            BACKSPACE * (fslength if i else 0)),
-            end="", flush=True)
-
-        time.sleep(flashsleep)
-
-        print("{0}{1}".format(
-            flashstring,
-            BACKSPACE * fslength),
-            end="", flush=True)
-        time.sleep(flashsleep)
-
-    # print("{0}{1}{0}".format(
-    #     SPACE * fslength,
-    #     BACKSPACE * fslength),
-    #     end="", flush=True)
+OS_Class = None
+try:
+    import msvcrt
+    OS_Class = "Windows"
+except ImportError:
+    import sys, termios
+    OS_Class = "Unix"
 
 
-def get_masked_int_password(prompt, errormsg, min_int, max_int, min_len=None, max_len=None,
-                            sleep_every=None, sleep_length=None, sleep_penalty=None, PIN=None):
+def flush_input():
+    if OS_Class == "Windows":
+        while msvcrt.kbhit():
+            msvcrt.getch()
+    elif OS_Class == "Unix":
+        termios.tcflush(sys.stdin, termios.TCIOFLUSH)
 
-    tries = 0
-    sleeping_msg = "   ...sleeping..."
 
+def chat():
+    sys.stdout = open(1, 'w')
+    sys.stdin = open(0, 'r')
+
+    print("\nHello, and welcome. Talk to me!\n(Enter 00000 at any time to quit.)")
     while True:
-        tries += 1
-        instring = getpass.getpass(prompt)
+        try:
+            text_in = input("\nSay something! ")
+        except KeyboardInterrupt:
+            text_in = "00000"
 
-        if instring == str(PIN):
-            print("done!")
-            return True
+        if text_in == "00000":
+            print("\nThanks for stopping by. Talk to you later!")
+            exit(0)
         else:
-            print(errormsg)
-            if tries == 3:
-                print(f"Failure number {tries}. The screen will now lock for {sleep_length} seconds.\n")
-                flash_string(sleeping_msg, sleep_length, 0.5)
-                tries = 0
-                try:
-                    new_sleep_length = int(eval(str(sleep_length) + str(sleep_penalty)))
-                    sleep_length = max(sleep_length, new_sleep_length)
-                except SyntaxError:
-                    print("oops")
-                    pass
-                except ZeroDivisionError:
-                    print("oops2")
-                    pass
-            else:
-                print(f"Failure number {tries}. The screen will lock at {sleep_every} failures.\n")
+            print(f"You said: '{text_in}'!")
+
+
+def timer(seconds):
+    time.sleep(seconds)
 
 
 def main():
-    pin = "12345"
 
-    while True:
-        print("")
-        pwd = get_masked_int_password(
-            prompt='Please enter a 5-digit number: ',
-            errormsg="You have not entered the correct PIN. Please try again.",
-            min_int=0,
-            max_int=99999,
-            min_len=5,
-            max_len=5,
-            sleep_every=3,
-            sleep_length=2,
-            sleep_penalty="*2",
-            PIN=pin
-        )
-        print("You have entered the correct PIN. Thank you.")
+    secret = "12345"
+    timeout = 3
 
+    try:
+        while True:
+            failures = 0
+            pin = ""
+            while pin != secret:
+                flush_input()
+                pin = getpass("\n\nPlease enter your 5-digit pin (enter 00000 to quit): ")
+                if pin == "00000":
+                    print("\nThank you for using ChatBot. Come back soon!\n")
+                    return
+                elif pin == secret:
+                    try:
+                        failures = 0
+                        print("You have entered the correct pin. Thank you.")
+                        chatbot = multiprocessing.Process(target=chat, name="ChatBot")
+                        chatbot.start()
+                        clock = multiprocessing.Process(target=timer, name="Timer", args=(15, ))
+                        clock.start()
+
+                        while chatbot.is_alive() and clock.is_alive():
+                            time.sleep(0.25)
+
+                        if clock.is_alive():
+                            clock.terminate()
+                        else:
+                            print("\n***** Your session has expired. *****\n")
+
+                        if chatbot.is_alive():
+                            chatbot.terminate()
+
+                    except KeyboardInterrupt:
+                        print("Ending program due to keyboard interrupt.")
+                        exit(0)
+                else:
+                    failures += 1
+                    if failures % 3 == 0:
+                        print(f"Third failure. Locking program for {timeout} seconds.")
+                        time.sleep(timeout)
+                        timeout *= 2
+                    else:
+                        print(f"Failure number {failures}. The screen will lock after every 3 failures.")
+
+    except KeyboardInterrupt:
+        print("\nExiting program due to user request (keyboard interrupt).\n")
+        exit(0)
 
 if __name__ == '__main__':
     main()
