@@ -1,0 +1,33 @@
+from getpass import getpass
+from time import sleep
+
+
+
+PIN=str(12345)
+failed=1
+locktime=10
+while failed < 3:
+ if failed==1:
+     number=str(getpass("Please enter your PIN:"))
+ if number==PIN:
+    print("You have entered the correct PIN. Thank you")
+    break
+ elif number!=PIN:
+    print("You have not entered the correct PIN.")
+    print("Failure number {0}. The screen will lock at 3 failures".format(str(failed)))
+    number=str(getpass("Please try again: "))
+    failed +=1
+ if failed == 3:
+     print("Failure number 3. The screen will now lock for 10 seconds.")
+     sleep(locktime)
+     locktime*=2
+     failed = 1
+done=False
+print("Hello and welcome.")
+while done == False:
+ print("Talk to me!")
+ response=input("")
+ print('You said, "{0}"'.format(response))
+ if response==("self destruct"):
+     print("Terminating")
+     break
