@@ -18,7 +18,7 @@ while failed < 3:
     number=str(getpass("Please try again: "))
     failed +=1
  if failed == 3:
-     print("Failure number 3. The screen will now lock for 10 seconds.")
+     print("Failure number 3. The screen will now lock for {0} seconds.".format(locktime))
      sleep(locktime)
      locktime*=2
      failed = 1
